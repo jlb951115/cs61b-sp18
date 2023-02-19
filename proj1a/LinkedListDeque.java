@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class LinkedListDeque<T> {
     private class DequeNode
     {
@@ -29,10 +31,11 @@ public class LinkedListDeque<T> {
         DequeNode P = sentinel;
         while(P.next != null)
         {
-            System.out.print(P.item);
+            System.out.print(P.next.item);
             System.out.print(" ");
             P = P.next;
         }
+        System.out.print("\n");
     }
 
     public LinkedListDeque()
@@ -66,7 +69,10 @@ public class LinkedListDeque<T> {
     public void addLast(T item)
     {
         if (size == 0)
+        {
             addFirst(item);
+            return;
+        }
         else
         {
             last.next = new DequeNode(item,null,last);
@@ -125,5 +131,17 @@ public class LinkedListDeque<T> {
             return sentinel.next.item;
         else
             return new LinkedListDeque<T>(sentinel.next,last,size-1).getRecursive(index-1);
+    }
+
+    public void printDequelast()
+    {
+        DequeNode P = last;
+        while(P != sentinel && P != null)
+        {
+            System.out.print(P.item);
+            System.out.print(" ");
+            P = P.prev;
+        }
+        System.out.print("\n");
     }
 }
