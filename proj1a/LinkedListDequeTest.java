@@ -98,6 +98,10 @@ public class LinkedListDequeTest {
 		passed = checkSize(5, lld1.get(1)) && passed;
 		passed = checkSize(4, lld1.get(2)) && passed;
 		passed = checkSize(3, lld1.get(3)) && passed;
+		passed = checkSize(6, lld1.getRecursive(0)) && passed;
+		passed = checkSize(5, lld1.getRecursive(1)) && passed;
+		passed = checkSize(4, lld1.getRecursive(2)) && passed;
+		passed = checkSize(3, lld1.getRecursive(3)) && passed;
 		printTestStatus(passed);
 	}
 	public static void RemoveFirstTest() {
@@ -109,17 +113,23 @@ public class LinkedListDequeTest {
 		lld.printDeque();
 		boolean passed = checkSize(3, lld.size());
 		passed = checkSize(1, lld.get(0)) && passed;
+		passed = checkSize(1, lld.getRecursive(0)) && passed;
 		passed = checkSize(2, lld.get(1)) && passed;
+		passed = checkSize(2, lld.getRecursive(1)) && passed;
 		passed = checkSize(3, lld.get(2)) && passed;
+		passed = checkSize(3, lld.getRecursive(2)) && passed;
 		lld.removeFirst();
 		lld.printDeque();
 		passed = checkSize(2, lld.size()) && passed;
 		passed = checkSize(2, lld.get(0)) && passed;
+		passed = checkSize(2, lld.getRecursive(0)) && passed;
 		passed = checkSize(3, lld.get(1)) && passed;
+		passed = checkSize(3, lld.getRecursive(1)) && passed;
 		lld.removeFirst();
 		lld.printDeque();
 		passed = checkSize(1, lld.size()) && passed;
 		passed = checkSize(3, lld.get(0)) && passed;
+		passed = checkSize(3, lld.getRecursive(0)) && passed;
 	}
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");

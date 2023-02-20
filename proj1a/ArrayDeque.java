@@ -7,7 +7,7 @@ public class ArrayDeque<T> {
         size = 0;
         items = (T[]) new Object[8];
         nextfirst = 0;
-        nextlast = 0;
+        nextlast = 1;
     }
 
     public int size() {
@@ -59,26 +59,20 @@ public class ArrayDeque<T> {
             resize(size * 2);
         items[nextfirst] = item;
         size += 1;
-        if (size == 1){
-            nextfirst = minusone(nextfirst, items.length);
-            nextlast = plusone(nextlast, items.length);
-        }
-        else{
-            nextfirst = minusone(nextfirst, items.length);
-        }
+        nextfirst = minusone(nextfirst, items.length);
     }
 
     public void addLast(T item) {
         if (size == items.length) {
             resize(size * 2);
         }
-        items[nextlast] = item;
-        size += 1;
-        if (size == 1){
-            nextfirst = minusone(nextfirst, items.length);
-            nextlast = plusone(nextlast, items.length);
+        if (size == 0){
+            addFirst(item);
+            return;
         }
         else{
+            items[nextlast] = item;
+            size += 1;
             nextlast = plusone(nextlast, items.length);
         }
     }
@@ -105,6 +99,9 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (size == 0) {
             return null;
+        }
+        if (size == 1){
+            return removeFirst();
         }
         size -= 1;
         nextlast = minusone(nextlast, items.length);
