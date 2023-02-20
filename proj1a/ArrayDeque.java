@@ -40,8 +40,7 @@ public class ArrayDeque<T> {
     private int minusone(int index, int capt) {
         if (index - 1 < 0) {
             return capt - 1;
-        }
-        else {
+        } else {
             return index - 1;
         }
     }
@@ -49,18 +48,18 @@ public class ArrayDeque<T> {
     private int plusone(int index, int capt) {
         if (index + 1 == capt) {
             return 0;
-        }
-        else {
+        } else {
             return index + 1;
         }
     }
 
-    private int plusnumber(int number, int adder){
+    private int plusnumber(int number, int adder) {
         return (number + adder) % items.length;
     }
     public void addFirst(T item) {
-        if (size == items.length)
+        if (size == items.length) {
             resize(size * 2);
+        }
         items[nextfirst] = item;
         size += 1;
         nextfirst = minusone(nextfirst, items.length);
@@ -70,15 +69,9 @@ public class ArrayDeque<T> {
         if (size == items.length) {
             resize(size * 2);
         }
-        if (size == 0){
-            addFirst(item);
-            return;
-        }
-        else{
-            items[nextlast] = item;
-            size += 1;
-            nextlast = plusone(nextlast, items.length);
-        }
+        items[nextlast] = item;
+        size += 1;
+        nextlast = plusone(nextlast, items.length);
     }
 
     public T removeFirst() {
@@ -103,9 +96,6 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (size == 0) {
             return null;
-        }
-        if (size == 1){
-            return removeFirst();
         }
         size -= 1;
         nextlast = minusone(nextlast, items.length);
