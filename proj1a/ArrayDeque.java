@@ -19,7 +19,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        return items[index];
+        return items[plusnumber(nextfirst, index + 1)];
     }
 
     private void resize(int cap) {
@@ -55,6 +55,9 @@ public class ArrayDeque<T> {
         }
     }
 
+    private int plusnumber(int number, int adder){
+        return (number + adder) % items.length;
+    }
     public void addFirst(T item) {
         if (size == items.length)
             resize(size * 2);
@@ -85,12 +88,6 @@ public class ArrayDeque<T> {
         size -= 1;
         nextfirst = plusone(nextfirst, items.length);
         T item = items[nextfirst];
-        if (size == 1){
-            items[0] = items[plusone(nextfirst, items.length)];
-            nextfirst = minusone(0, items.length);
-            nextlast = 1;
-            return  item;
-        }
         if (items.length < 16) {
             return item;
         }
@@ -113,12 +110,6 @@ public class ArrayDeque<T> {
         size -= 1;
         nextlast = minusone(nextlast, items.length);
         T item = items[nextlast];
-        if (size == 1){
-            items[0] = items[plusone(nextfirst, items.length)];
-            nextfirst = minusone(0, items.length);
-            nextlast = 1;
-            return  item;
-        }
         if (items.length < 16) {
             return item;
         }
