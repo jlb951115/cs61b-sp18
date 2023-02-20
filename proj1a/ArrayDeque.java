@@ -83,12 +83,10 @@ public class ArrayDeque<T> {
         T item = items[nextfirst];
         if (items.length < 16) {
             return item;
-        }
-        else if (size < items.length * 0.25){
+        } else if (size < items.length * 0.25) {
             resize(2 * size);
             return item;
-        }
-        else {
+        } else {
             return item;
         }
     }
@@ -102,12 +100,10 @@ public class ArrayDeque<T> {
         T item = items[nextlast];
         if (items.length < 16) {
             return item;
-        }
-        else if (size < items.length * 0.25){
+        } else if (size < items.length * 0.25) {
             resize(2 * size);
             return item;
-        }
-        else {
+        } else {
             return item;
         }
     }
@@ -115,7 +111,7 @@ public class ArrayDeque<T> {
     public void printDeque() {
         int i = 0;
         int index = nextfirst;
-        while(i < size) {
+        while (i < size) {
             System.out.print(items[plusone(index, items.length)]);
             System.out.print(" ");
             index = plusone(index, items.length);
