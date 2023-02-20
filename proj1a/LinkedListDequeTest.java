@@ -72,19 +72,18 @@ public class LinkedListDequeTest {
 		lld1.addFirst(10);
 		// should not be empty 
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
-		passed = checkSize(1,lld1.size()) && passed;
+		passed = checkSize(1, lld1.size()) && passed;
 		lld1.removeFirst();
 		// should be empty 
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
-		passed = checkSize(0,lld1.size());
+		passed = checkSize(0, lld1.size());
 		printTestStatus(passed);
 	}
 
-	public static void RemoveLastTest()
-	{
+	public static void RemoveLastTest() {
 		System.out.println("Runing remove last test");
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
-		boolean passed = checkEmpty(true,lld1.isEmpty());
+		boolean passed = checkEmpty(true, lld1.isEmpty());
 		lld1.addLast(6);
 		lld1.addLast(5);
 		lld1.addLast(4);
@@ -94,45 +93,33 @@ public class LinkedListDequeTest {
 		lld1.removeLast();
 		lld1.removeLast();
 		lld1.printDeque();
-		lld1.printDequelast();
-		passed = checkSize(4,lld1.size())&&passed;
-		passed = checkSize(6, lld1.get(0))&&passed;
-		passed = checkSize(5, lld1.get(1))&&passed;
-		passed = checkSize(4, lld1.get(2))&&passed;
-		passed = checkSize(3, lld1.get(3))&&passed;
-		passed = checkSize(6, lld1.getRecursive(0))&&passed;
-		passed = checkSize(5, lld1.getRecursive(1))&&passed;
-		passed = checkSize(4, lld1.getRecursive(2))&&passed;
-		passed = checkSize(3, lld1.getRecursive(3))&&passed;
+		passed = checkSize(4, lld1.size()) && passed;
+		passed = checkSize(6, lld1.get(0)) && passed;
+		passed = checkSize(5, lld1.get(1)) && passed;
+		passed = checkSize(4, lld1.get(2)) && passed;
+		passed = checkSize(3, lld1.get(3)) && passed;
 		printTestStatus(passed);
 	}
-	public static void RemoveFirstTest()
-	{
+	public static void RemoveFirstTest() {
 		System.out.println("Runing remove first Test");
 		LinkedListDeque<Integer> lld = new LinkedListDeque<Integer>();
 		lld.addFirst(3);
 		lld.addFirst(2);
 		lld.addFirst(1);
 		lld.printDeque();
-		boolean passed = checkSize(3,lld.size());
-		passed = checkSize(1,lld.get(0)) && passed;
-		passed = checkSize(1, lld.getRecursive(0)) && passed;
-		passed = checkSize(2,lld.get(1)) && passed;
-		passed = checkSize(2, lld.getRecursive(1)) && passed;
+		boolean passed = checkSize(3, lld.size());
+		passed = checkSize(1, lld.get(0)) && passed;
+		passed = checkSize(2, lld.get(1)) && passed;
 		passed = checkSize(3, lld.get(2)) && passed;
-		passed = checkSize(3, lld.getRecursive(2)) && passed;
 		lld.removeFirst();
 		lld.printDeque();
 		passed = checkSize(2, lld.size()) && passed;
-		passed = checkSize(2,lld.get(0)) && passed;
-		passed = checkSize(2, lld.getRecursive(0)) && passed;
-		passed = checkSize(3,lld.get(1)) && passed;
-		passed = checkSize(3, lld.getRecursive(1)) && passed;
+		passed = checkSize(2, lld.get(0)) && passed;
+		passed = checkSize(3, lld.get(1)) && passed;
 		lld.removeFirst();
 		lld.printDeque();
 		passed = checkSize(1, lld.size()) && passed;
-		passed = checkSize(3,lld.get(0)) && passed;
-		passed = checkSize(3,lld.getRecursive(0)) && passed;
+		passed = checkSize(3, lld.get(0)) && passed;
 	}
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
