@@ -54,6 +54,7 @@ public class ArrayDeque<T> {
             return index + 1;
         }
     }
+
     public void addFirst(T item) {
         if (size == items.length)
             resize(size * 2);
@@ -106,6 +107,12 @@ public class ArrayDeque<T> {
         size -= 1;
         nextlast = minusone(nextlast, items.length);
         T item = items[nextlast];
+        if (size == 1){
+            items[0] = items[plusone(nextfirst, items.length)];
+            nextfirst = minusone(0, items.length);
+            nextlast = 1;
+            return  item;
+        }
         if (items.length < 16) {
             return item;
         }
