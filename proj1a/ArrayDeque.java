@@ -1,56 +1,33 @@
-public class ArrayDeque<Item>
-{
-    private Item[] items;
+public class ArrayDeque<T> {
+    private T[] items;
     private int size;
     private int nextfirst;
     private int nextlast;
-    public ArrayDeque()
-    {
+    public ArrayDeque() {
         size = 0;
-        items = (Item[]) new Object[8];
-        nextfirst = 4;
-        nextlast = 5;
+        items = (T[]) new Object[8];
+        nextfirst = 0;
+        nextlast = 0;
     }
 
-    public int size()
-    {
+    public int size() {
         return size;
     }
 
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return size == 0;
     }
 
-    public Item get(int index)
-    {
+    public T get(int index) {
         return items[index];
     }
 
-    public Item getLast()
-    {
-        if (size == 0)
-            return null;
-        else
-            return items[minusone(nextlast,items.length)];
-    }
-
-    public Item getFirst()
-    {
-        if (size == 0)
-            return null;
-        else
-            return items[plusone(nextfirst,items.length)];
-    }
-
-    private void resize(int cap)
-    {
-        Item[] a = (Item[]) new Object[cap];
+    private void resize(int cap) {
+        T[] a = (T[]) new Object[cap];
         int number = size;
         int i = 0;
         int index = nextfirst;
-        while (number > 0)
-        {
+        while (number > 0) {
             a[i] = items[plusone(index,items.length)];
             i++;
             number--;
@@ -60,23 +37,20 @@ public class ArrayDeque<Item>
         nextfirst = minusone(0,items.length);
         nextlast = size;
     }
-    private int minusone(int index, int capt)
-    {
+    private int minusone(int index, int capt) {
         if (index - 1 < 0)
             return capt - 1;
         else
             return index - 1;
     }
 
-    private int plusone(int index, int capt)
-    {
+    private int plusone(int index, int capt) {
         if (index + 1 == capt)
             return 0;
         else
             return index + 1;
     }
-    public void addFirst(Item item)
-    {
+    public void addFirst(T item) {
         if (size == items.length)
             resize(size * 2);
         items[nextfirst] = item;
@@ -84,8 +58,7 @@ public class ArrayDeque<Item>
         size += 1;
     }
 
-    public void addLast(Item item)
-    {
+    public void addLast(T item) {
         if (size == items.length)
             resize(size * 2);
         items[nextlast] = item;
@@ -93,30 +66,42 @@ public class ArrayDeque<Item>
         size += 1;
     }
 
-    public Item removeFirst()
-    {
+    public T removeFirst() {
         if (size == 0)
             return null;
         size -= 1;
         nextfirst = plusone(nextfirst, items.length);
-        return items[nextfirst];
+        T item = items[nextfirst];
+        if (items.length < 16)
+            return item;
+        else if (size < items.length * 0.25){
+            resize(2 * size);
+            return item;
+        }
+        else
+            return item;
     }
 
-    public Item removeLast()
-    {
+    public T removeLast() {
         if (size == 0)
             return null;
         size -= 1;
         nextlast = minusone(nextlast,items.length);
-        return items[nextlast];
+        T item = items[nextlast];
+        if (items.length < 16)
+            return item;
+        else if (size < items.length * 0.25){
+            resize(2 * size);
+            return item;
+        }
+        else
+            return item;
     }
 
-    public void printDeque()
-    {
+    public void printDeque() {
         int i = 0;
         int index = nextfirst;
-        while(i < size)
-        {
+        while(i < size) {
             System.out.print(items[plusone(index,items.length)]);
             System.out.print(" ");
             index = plusone(index,items.length);

@@ -1,13 +1,11 @@
 import java.awt.*;
 
 public class LinkedListDeque<T> {
-    private class DequeNode
-    {
+    private class DequeNode {
         public T item;
         public DequeNode next;
         public DequeNode prev;
-        public DequeNode(T i, DequeNode n, DequeNode x)
-        {
+        public DequeNode(T i, DequeNode n, DequeNode x){
             item = i;
             next = n;
             prev = x;
@@ -16,21 +14,17 @@ public class LinkedListDeque<T> {
     private DequeNode sentinel;
     private DequeNode last;
     private int size;
-    public int size()
-    {
+    public int size(){
         return  size;
     }
 
-    public boolean isEmpty()
-    {
+    public boolean isEmpty(){
         return sentinel.next == null;
     }
 
-    public void printDeque()
-    {
+    public void printDeque(){
         DequeNode P = sentinel;
-        while(P.next != null)
-        {
+        while(P.next != null) {
             System.out.print(P.next.item);
             System.out.print(" ");
             P = P.next;
@@ -38,86 +32,73 @@ public class LinkedListDeque<T> {
         System.out.print("\n");
     }
 
-    public LinkedListDeque()
-    {
+    public LinkedListDeque() {
         sentinel = new DequeNode(null,null,null);
         size = 0;
         last = null;
     }
 
-    public LinkedListDeque(DequeNode i, DequeNode n, int s)
-    {
+    public LinkedListDeque(DequeNode i, DequeNode n, int s){
         sentinel = i;
         last = n;
         size = s;
     }
-    public void addFirst(T item)
-    {
-        if (size == 0)
-        {
+
+    public void addFirst(T item){
+        if (size == 0) {
             sentinel.next = new DequeNode(item,null,sentinel);
             last = sentinel.next;
         }
-        else
-        {
+        else {
             sentinel.next = new DequeNode(item, sentinel.next,sentinel);
             sentinel.next.next.prev = sentinel.next;
         }
         size += 1;
     }
 
-    public void addLast(T item)
-    {
-        if (size == 0)
-        {
+    public void addLast(T item){
+        if (size == 0) {
             addFirst(item);
             return;
         }
-        else
-        {
+        else {
             last.next = new DequeNode(item,null,last);
             last = last.next;
         }
         size += 1;
     }
 
-    public void removeLast()
-    {
+    public T removeLast() {
         if (size == 0)
-            return;
-        else
-        {
-            last = last.prev;
-            last.next = null;
-        }
+            return null;
+        T item = last.item;
+        last = last.prev;
+        last.next = null;
         size -= 1;
+        return item;
     }
 
-    public void removeFirst()
-    {
+    public T removeFirst() {
         if (size == 0)
-            return;
-        else if (size == 1)
-        {
+            return null;
+        T item = sentinel.next.item;
+        if (size == 1)
             sentinel.next = null;
-        }
-        else
-        {
+        else {
             sentinel.next = sentinel.next.next;
             sentinel.next.prev = sentinel;
         }
         size -= 1;
+        return item;
     }
-    public T get(int index)
-    {
-        if (index > size - 1)
+
+    public T get(int index) {
+        if (index > size - 1 || size == 0)
             return null;
-        else
-        {
+        else{
             DequeNode P = sentinel;
             int i = 0;
-            while (i < index)
-            {
+            while (i < index){
                 P = P.next;
                 i++;
             }
@@ -125,19 +106,16 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public T getRecursive(int index)
-    {
+    public T getRecursive(int index){
         if (index == 0)
             return sentinel.next.item;
         else
-            return new LinkedListDeque<T>(sentinel.next,last,size-1).getRecursive(index-1);
+            return new LinkedListDeque<T>(sentinel.next, last, size - 1).getRecursive(index-1);
     }
 
-    public void printDequelast()
-    {
+    public void printDequelast(){
         DequeNode P = last;
-        while(P != sentinel && P != null)
-        {
+        while(P != sentinel && P != null){
             System.out.print(P.item);
             System.out.print(" ");
             P = P.prev;

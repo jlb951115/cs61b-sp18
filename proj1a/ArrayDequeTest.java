@@ -1,6 +1,5 @@
 public class ArrayDequeTest {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args){
         ArrayDeque<String> lld = new ArrayDeque<String>();
         lld.addLast("a");
         lld.addLast("b");
