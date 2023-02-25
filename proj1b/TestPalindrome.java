@@ -18,7 +18,7 @@ public class TestPalindrome {
     } /*Uncomment this class once you've created your Palindrome class. */
 
     @Test
-    public void testisPalindrome(){
+    public void testisPalindrome() {
         assertFalse(palindrome.isPalindrome("cat"));
         assertFalse(palindrome.isPalindrome("dog"));
         assertTrue(palindrome.isPalindrome("racecar"));

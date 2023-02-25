@@ -1,17 +1,16 @@
-public interface Deque<T>{
-    public void addFirst(T item);
+public interface Deque<T> {
+    void addFirst(T item);
 
-    public void addLast(T item);
+    void addLast(T item);
 
-    public boolean isEmpty();
+    boolean isEmpty();
 
-    public int size();
+    int size();
 
-    public void printDeque();
+    void printDeque();
 
-    public T removeFirst();
+    T removeFirst();
 
-    public T removeLast();
-
-    public T get(int index);
+    T removeLast();
+    T get(int index);
 }
