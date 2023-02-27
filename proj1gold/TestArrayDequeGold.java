@@ -7,7 +7,7 @@ public class TestArrayDequeGold {
         ArrayDequeSolution<Integer> expected = new ArrayDequeSolution<Integer>();
         String s = "";
         int lowerbounbder = 5;
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++){
             double number = StdRandom.uniform();
             int x = StdRandom.uniform(lowerbounbder, lowerbounbder+5);
             if (number >= 0.5){
